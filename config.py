@@ -1,4 +1,5 @@
 # ola configs
+LIGHT_INTENSITY = "150"
 MAX_CHANNELS = 512
 BLINK_TIMES = 5
 SLEEP_BETWEEN_BLINKS = 0.2
@@ -15,5 +16,5 @@ LIGTHS = {"mono": {"C": (FL, FR, BL, BR)},
 
 # websocket configs
 WEBSOCKET_IP = '10.30.1.168'
-WEBSOCKET_PORT = 5678
+WEBSOCKET_PORT = 5679
 
