@@ -8,7 +8,7 @@ from config import WEBSOCKET_IP, WEBSOCKET_PORT
 
 async def server(ws: str, path: int):
     print('Client joined.')
-    ola_interface.blink()
+    ola_interface.blink_all_lights()
     close_connection = False
 
     while True:
