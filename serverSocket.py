@@ -14,7 +14,7 @@ async def server(ws: str, path: int):
     while True:
         try:
             message = await ws.recv()
-            print(f'msg [{message}]')
+            print(f'msg: {message}')
             color_list = ola_interface.parse_ligths(message)
             ola_interface.set_lights(color_list)
         except websockets.exceptions.ConnectionClosed as ex:
