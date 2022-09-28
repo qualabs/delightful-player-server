@@ -3,9 +3,9 @@ import json
 import array
 
 from ola.ClientWrapper import ClientWrapper
-from rgbw_colorspace_converter.colors.converters import RGB
 
 from config import *
+from manage_colors import rgb_to_lrgb
 
 
 def turn_off_all_ligths():
@@ -30,23 +30,21 @@ def blink_all_lights():
     turn_off_all_ligths()
 
 
+# example of json_colors: {"config":"mono","channels":{"C":[0,0,0]}}
 def fill_colors_list(json_colors):
     color_list = [0] * MAX_CHANNELS
     for light_config, channels in LIGHTS.items():
+        # example of light_config: "mono"
         if json_colors["config"] == light_config:
             for channel, lights in channels.items():
-                colors = json_colors["channels"][channel]
-                new_rgb = RGB(colors[0], colors[1], colors[2])
-                rgbw = new_rgb.rgbw
+                # example of channel: "C"
+                rgb = json_colors["channels"][channel]
+                colors = rgb_to_lrgb(rgb)
+                # example of lights: (FL, FR, BL, BR)
                 for light_pos in lights:
-                    # the first channel of each light has to have the last element of the rgbw color
-                    color_list[light_pos] = rgbw[3]
-                    if color_list[light_pos] < 30:
-                        color_list[light_pos] = 30
-                    # fills the rgb channels of each light with the corresponding rgb components of the rgbw color
-                    for rgb in range(3):
-                        color = rgbw[rgb]
-                        color_list[light_pos+1+rgb] = color
+                    for i in range(4):
+                        # fills the rgb channels of each light
+                        color_list[light_pos + i] = colors[i]
     return color_list
 
 
@@ -56,12 +54,6 @@ def parse_lights(websocket_message):
 
 
 def set_lights(color_list):
-    # converts a list into a comma separated string
-    # example: [255,255,0,0] into "255,255,0,0"
-    # str_color_list = ",".join([str(i) for i in color_list])
-    # command = f"ola_set_dmx -u 1 -d {str_color_list}"
-    # subprocess.run(command, check=True, shell=True, universal_newlines=True, stdout=subprocess.PIPE,
-    #                stderr=subprocess.PIPE)
     data = array.array('B', color_list)
     wrapper = ClientWrapper()
     client = wrapper.Client()
