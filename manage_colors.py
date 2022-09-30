@@ -53,6 +53,8 @@ def special_color(my_rgb):
     return None
 
 
+# rgb: tuple with color components (red, gree, blue)
+# returns lrgb: tuple with color components (luminosity, red, gree, blue)
 def rgb_to_lrgb(rgb):
     # is Red, Green or Blue
     pure = pure_r_g_b(rgb)
