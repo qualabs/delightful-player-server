@@ -35,6 +35,8 @@ def white_in_rgb(rgb):
     return None
 
 
+# This function is used just to be a little more precise in a few special colors.
+# Is for detail. You can remove it and the colors will be fine anyway.
 def special_color(my_rgb):
     # example of perfect_rgb_str: "255,215,0"
     # example of light_rgb: (250, 250, 100, 0).

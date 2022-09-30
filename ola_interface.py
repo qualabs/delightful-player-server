@@ -8,7 +8,7 @@ from config import *
 from manage_colors import rgb_to_lrgb
 
 
-def turn_off_all_ligths():
+def turn_off_all_lights():
     black_color_list = [0] * MAX_CHANNELS
     set_lights(black_color_list)
 
@@ -27,7 +27,7 @@ def blink_all_lights():
     set_lights(color_list)
     time.sleep(BLINKING_TIME)
 
-    turn_off_all_ligths()
+    turn_off_all_lights()
 
 
 # example of json_colors: {"config":"mono","channels":{"C":[0,0,0]}}

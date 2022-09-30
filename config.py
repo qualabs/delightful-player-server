@@ -1,9 +1,8 @@
-# ola configs
-MAX_CHANNELS = 512
+# OLA and Lights configs
 UNIVERSE = 1
+MAX_CHANNELS = 512
 
 BLINKING_TIME = 0.5
-# (Luminocity, Red, Green, Blue, Blinking Speed)
 BLINKING_COLOR = (255, 255, 255, 255, 250)
 
 FL = 0
@@ -15,6 +14,7 @@ LIGHTS = {"mono": {"C": (FL, FR, BL, BR)},
           "stereo": {"L": (FL, BL), "R": (FR, BR)},
           "surround": {"FL": (FL,), "FR": (FR,), "BL": (BL,), "BR": (BR,)},
           }
+
 
 # websocket configs
 WEBSOCKET_IP = "10.30.1.168"

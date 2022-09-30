@@ -14,11 +14,10 @@ async def server(ws: str, path: int):
     while True:
         try:
             json_colors = await ws.recv()
-            print(f'json of colors received: {json_colors}')
             color_list = ola_interface.parse_lights(json_colors)
             ola_interface.set_lights(color_list)
         except websockets.exceptions.ConnectionClosed as ex:
-            print("Client disconnected.  Do cleanup", ex)
+            print("Client disconnected. Do cleanup", ex)
             close_connection = True
             break
         except websockets.exceptions as ex:
