@@ -1,5 +1,5 @@
-# delightful_player_server
-Server of the Delightful player project.
+# delightful-player-server
+Server of the Delightful Player.
 
 Using python and OLA library it connects to the DMX interface.
 

@@ -15,8 +15,6 @@ LIGHTS = {"mono": {"C": (FL, FR, BL, BR)},
           "surround": {"FL": (FL,), "FR": (FR,), "BL": (BL,), "BR": (BR,)},
           }
 
-
 # websocket configs
-WEBSOCKET_IP = "10.30.1.168"
+WEBSOCKET_IP = "0.0.0.0"
 WEBSOCKET_PORT = 5679
-

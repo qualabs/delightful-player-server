@@ -33,18 +33,24 @@ def blink_all_lights():
 # example of json_colors: {"config":"mono","channels":{"C":[0,0,0]}}
 def fill_colors_list(json_colors):
     color_list = [0] * MAX_CHANNELS
-    for light_config, channels in LIGHTS.items():
-        # example of light_config: "mono"
-        if json_colors["config"] == light_config:
-            for channel, lights in channels.items():
-                # example of channel: "C"
-                rgb = json_colors["channels"][channel]
-                colors = rgb_to_lrgb(rgb)
-                # example of lights: (FL, FR, BL, BR)
-                for light_pos in lights:
-                    for i in range(4):
-                        # fills the rgb channels of each light
-                        color_list[light_pos + i] = colors[i]
+
+    if json_colors["config"] == "custom":
+        for channel, value in json_colors["channels"]:
+            color_list[channel] = value
+    else:
+        for light_config, channels in LIGHTS.items():
+            # example of light_config: "mono"
+            if json_colors["config"] == light_config:
+                for channel, lights in channels.items():
+                    # example of channel: "C"
+                    rgb = json_colors["channels"][channel]
+                    colors = rgb_to_lrgb(rgb)
+                    # example of lights: (FL, FR, BL, BR)
+                    for light_pos in lights:
+                        for i in range(4):
+                            # fills the rgb channels of each light
+                            color_list[light_pos + i] = colors[i]
+
     return color_list
 
 
